@@ -1,0 +1,27 @@
+version: '2'
+services:
+  digitalglobe-app:
+    image: docker.accenture.com/aowp/aowp-digitalglobe:1
+    container_name: digitalglobe-app
+    expose:
+        - 8080/tcp
+    environment:
+        - NODE_ENV=production
+    labels:
+        cmt.iaac.description: "DigitalGlobe reference application"
+
+  nginx-webserver:
+    image: nginx:1.11-alpine
+    container_name: nginx-webserver
+    ports:
+        - 80:80
+    volumes:
+        - nginx_confd:/etc/nginx/conf.d
+    depends_on:
+      - digitalglobe-app
+    labels:
+        cmt.iaac.description: "NGINX reverse proxy"
+
+volumes:
+    nginx_confd:
+        driver: local
