@@ -15,7 +15,9 @@ services:
     container_name: nginx-webserver
     ports:
         - 80:80
+        - 443:443
     volumes:
+        - nginx_ssl:/etc/nginx/ssl
         - nginx_confd:/etc/nginx/conf.d
     depends_on:
       - digitalglobe-app
@@ -23,5 +25,8 @@ services:
         cmt.iaac.description: "NGINX reverse proxy"
 
 volumes:
+    nginx_ssl:
+        driver: local
+
     nginx_confd:
         driver: local
