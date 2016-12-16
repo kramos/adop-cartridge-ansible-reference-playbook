@@ -3,12 +3,7 @@
   remote_user: root
   vars:
       app_name: digitalglobe
-      domain_name: "{{ app_name }}"
-      docker_user: username
-      docker_pass: password
-      docker_registry: docker.accenture.com
+      domain_name: "{{ hostvars.digitalglobe_target_host.ansible_host }}.nip.io"
 
   tasks:
-    - debug: var=ansible_all_ipv4_addresses
-    - debug: var=ansible_default_ipv4.address
-    - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+    - debug: var=domain_name

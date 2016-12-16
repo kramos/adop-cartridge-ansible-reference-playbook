@@ -1,0 +1,2 @@
+digitalglobe_target_host ansible_host=54.89.29.199 ansible_user=ubuntu ansible_become=true ansible_become_user=root
+
